@@ -16,7 +16,7 @@ app.use("/api/message", require("./src/routes/message"));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:2022",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
