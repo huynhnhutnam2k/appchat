@@ -1,0 +1,38 @@
+@use "../../scss/" as *;
+
+.form {
+  width: 50rem;
+  border-radius: $borderRadius;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10rem;
+  background: $mainColor;
+  padding: 2rem 5rem;
+
+  &-logo {
+    width: 10rem;
+    height: 10rem;
+    // @include flex(center, center);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &-content {
+    @include flex(center, center);
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.redirect {
+  margin-top: 1.5rem;
+  span {
+    cursor: pointer;
+    color: $secondColor;
+  }
+}

@@ -1,0 +1,12 @@
+@use "../../scss/" as *;
+
+.logout {
+  @include flex(center, center);
+  width: 5rem;
+  height: 5rem;
+  background-color: $secondColor;
+  color: $white;
+  font-size: 2rem;
+  border-radius: $borderRadius;
+  cursor: pointer;
+}

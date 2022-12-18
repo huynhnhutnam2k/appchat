@@ -1,0 +1,17 @@
+@use "../../scss/" as *;
+
+.button {
+  padding: 1rem 2rem;
+  @include flex(center, center);
+  color: $white;
+  cursor: pointer;
+  width: 100%;
+  background-color: $secondColor;
+  border-radius: 1rem;
+  &.small {
+    width: 10%;
+    height: 100%;
+    border-radius: 2rem;
+    background-color: #9a86f3;
+  }
+}
