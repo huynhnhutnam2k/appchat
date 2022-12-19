@@ -6,11 +6,12 @@ import "./chat.scss";
 import Contacts from "./Contacts";
 import Welcome from "../../components/Welcome/Welcome";
 import ChatContainer from "./ChatContainer";
+import Loader from "../../asset/loader.gif";
 interface IProps {
   socket: any;
 }
 const Chat: React.FC<IProps> = ({ socket }) => {
-  const { userInfo, getAllUser, listUser } = useAuthStore();
+  const { userInfo, getAllUser, listUser, loading } = useAuthStore();
   const navigate = useNavigate();
   const [currentChat, setCurrentChat] = useState(undefined);
   useEffect(() => {
@@ -27,19 +28,28 @@ const Chat: React.FC<IProps> = ({ socket }) => {
     setCurrentChat(chat);
   };
   return (
-    <div className="container">
-      <div className="chat-container">
-        <Contacts contactList={listUser} changeChat={changeChat}></Contacts>
-        {currentChat === undefined ? (
-          <Welcome></Welcome>
-        ) : (
-          <ChatContainer
-            currentChat={currentChat}
-            socket={socket}
-          ></ChatContainer>
-        )}
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <div className="container">
+          <img src={Loader} alt="" />
+        </div>
+      ) : (
+        <div className="container">
+          <div className="chat-container">
+            <Contacts contactList={listUser} changeChat={changeChat}></Contacts>
+
+            {currentChat === undefined ? (
+              <Welcome></Welcome>
+            ) : (
+              <ChatContainer
+                currentChat={currentChat}
+                socket={socket}
+              ></ChatContainer>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

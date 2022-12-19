@@ -15,7 +15,7 @@ interface IMessage {
 }
 const ChatContainer: React.FC<IProps> = ({ currentChat, socket }) => {
   const [messages, setMessages] = useState<IMessage | any>([]);
-  const { getMessage, addMessage } = useMessageStore();
+  const { getMessage, addMessage, loading } = useMessageStore();
   const { userInfo } = useAuthStore();
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -68,21 +68,27 @@ const ChatContainer: React.FC<IProps> = ({ currentChat, socket }) => {
         <Logout socket={socket}></Logout>
       </div>
       <div className="chat-messages">
-        {messages?.map((message: IMessage) => {
-          return (
-            <div ref={scrollRef}>
-              <div
-                className={`chat-message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
-              >
-                <div className="content ">
-                  <p>{message.message}</p>
+        {loading ? (
+          <div className="center">
+            <div className="loading"></div>
+          </div>
+        ) : (
+          messages?.map((message: IMessage) => {
+            return (
+              <div ref={scrollRef}>
+                <div
+                  className={`chat-message ${
+                    message.fromSelf ? "sended" : "recieved"
+                  }`}
+                >
+                  <div className="content ">
+                    <p>{message.message}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
       <ChatInput handleSendMessage={handleSendMessage}></ChatInput>
     </div>

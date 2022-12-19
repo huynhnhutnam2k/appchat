@@ -71,3 +71,25 @@ button {
     border-radius: $borderRadius;
   }
 }
+.center {
+  @include flex(center, center);
+  width: 100%;
+  height: 100%;
+}
+.loading {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  border: 3px solid $secondColor;
+  border-top: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
