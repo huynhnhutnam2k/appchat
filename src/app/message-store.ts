@@ -1,5 +1,6 @@
 import axios from "axios";
 import create from "zustand";
+import url from "../constants/url";
 
 interface IMessage {
   _id: string;
@@ -33,7 +34,7 @@ export const useMessageStore = create<MessageState>()((set) => ({
   getMessage: async ({ from, to }) => {
     set({ loading: true });
     try {
-      const res = await axios.post(`message/get`, {
+      const res = await axios.post(`${url}message/get`, {
         from,
         to,
       });
@@ -46,7 +47,7 @@ export const useMessageStore = create<MessageState>()((set) => ({
   addMessage: async (data) => {
     set({ loading: true });
     try {
-      const res = await axios.post("message/add", data);
+      const res = await axios.post(url + "message/add", data);
       set({ success: true, loading: false, msg: res.data });
     } catch (error) {
       set({ loading: false, error: true });

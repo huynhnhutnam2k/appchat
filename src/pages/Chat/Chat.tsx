@@ -21,7 +21,7 @@ const Chat: React.FC<IProps> = ({ socket }) => {
     }
   }, []);
   useEffect(() => {
-    socket.emit("add-user", userInfo?._id);
+    socket?.emit("add-user", userInfo?._id);
   }, [userInfo]);
   const changeChat = (chat: any) => {
     setCurrentChat(chat);

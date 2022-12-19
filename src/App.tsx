@@ -9,7 +9,7 @@ import Login from "./pages/Auth/Login";
 import Chat from "./pages/Chat/Chat";
 import SetAvatar from "./pages/SetAvatar";
 import io from "socket.io-client";
-const socket = io("http://localhost:8080");
+const socket = io("https://appchat.onrender.com");
 function App() {
   return (
     <>

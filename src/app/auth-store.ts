@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ILogin, IResgister, IUserInfo } from "../../src/interface/Global";
 import create from "zustand";
+import url from "../constants/url";
 export const userInfo: any = localStorage.getItem("userInfo")
   ? // @ts-ignore
     JSON.parse(localStorage.getItem("userInfo"))
@@ -29,7 +30,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
   getAllUser: async () => {
     set({ loading: true });
     try {
-      const res = await axios.get("user");
+      const res = await axios.get(url + "user");
       set({ loading: false, listUser: res.data });
     } catch (error) {
       set({ error: true, loading: false });
@@ -38,7 +39,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
   async register(user) {
     set({ loading: true });
     try {
-      const res = await axios.post("user/register", user);
+      const res = await axios.post(url + "user/register", user);
       set({ success: true, msg: res.data, loading: false });
     } catch (error) {
       console.log(error);
@@ -48,7 +49,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
   async login(user) {
     set({ loading: true });
     try {
-      const res = await axios.post("user/login", user);
+      const res = await axios.post(url + "user/login", user);
       localStorage &&
         localStorage.setItem("userInfo", JSON.stringify(res.data));
       set({ userInfo: res.data, loading: false });
@@ -58,7 +59,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
   },
   setAvatar: async (avatar, id) => {
     try {
-      const { data }: any = await axios.put("user/setAvatar/" + id, {
+      const { data }: any = await axios.put(url + "user/setAvatar/" + id, {
         image: avatar,
       });
       return {
