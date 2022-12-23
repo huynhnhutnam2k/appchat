@@ -83,7 +83,10 @@ const Register = () => {
             setConfirm(e.target.value);
           }}
         ></Input>
-        <Button text="Register" onClick={handleRegister}></Button>
+        <Button
+          text={`${!loading ? "Register" : "Loading...."}`}
+          onClick={handleRegister}
+        ></Button>
         <div className="redirect">
           ALREADY HAVE AN ACCOUNT ?{" "}
           <span onClick={() => navigate("/login")}>LOGIN.</span>

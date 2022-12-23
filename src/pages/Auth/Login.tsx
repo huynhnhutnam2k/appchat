@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { userInfo, login, error } = useAuthStore();
+  const { userInfo, login, error, loading } = useAuthStore();
   const navigate = useNavigate();
   const handleLogin = async () => {
     const user = {
@@ -51,7 +51,10 @@ const Login = () => {
           }}
         ></Input>
 
-        <Button text="Log in" onClick={handleLogin}></Button>
+        <Button
+          text={`${!loading ? "Login" : "Loading...."}`}
+          onClick={handleLogin}
+        ></Button>
         <div className="redirect">
           DON'T HAVE AN ACCOUNT ?{" "}
           <span onClick={() => navigate("/register")}>CREATE ONE.</span>
