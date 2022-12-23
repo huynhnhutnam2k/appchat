@@ -31,6 +31,9 @@ const authController = {
         // throw new Error("Email or password is not valid");
       }
       const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword) {
+        return res.status(404).json("Email or password is not valid");
+      }
       if (user && validPassword) {
         const accessToken = authController.generateAccessToken(user);
         const refreshToken = authController.generateRefreshToken(user);
